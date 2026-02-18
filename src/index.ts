@@ -450,19 +450,19 @@ app.get('/', (c) => {
               sharedWithHtml = '<div><strong>Shared With:</strong> ' + task.shared_with + '</div>';
             }
             
-            taskEl.innerHTML = `
-              <h4>${task.title} ${task.completed ? '<span>(Completed)</span>' : ''}</h4>
-              <p>${task.description || ''}</p>
-              <div><strong>Due:</strong> ${formattedDate}</div>
-              ${tagsHtml}
-              ${repeatHtml}
-              ${sharedWithHtml}
-              <div style="margin-top: 10px;">
-                <button onclick="toggleTaskCompletion(${task.id}, ${task.completed})">${task.completed ? 'Mark as Uncompleted' : 'Mark as Completed'}</button>
-                <button onclick="deleteTask(${task.id})" style="background-color: #dc3545;">Delete</button>
-              </div>
-            `;
-            
+            taskEl.innerHTML =
+              '<h4>' + task.title + ' ' + (task.completed ? '<span>(Completed)</span>' : '') + '</h4>' +
+              '<p>' + (task.description || '') + '</p>' +
+              '<div><strong>Due:</strong> ' + formattedDate + '</div>' +
+              tagsHtml +
+              repeatHtml +
+              sharedWithHtml +
+              '<div style="margin-top: 10px;">' +
+                '<button onclick="toggleTaskCompletion(' + task.id + ', ' + task.completed + ')">' + (task.completed ? 'Mark as Uncompleted' : 'Mark as Completed') + '</button>' +
+                '<button onclick="deleteTask(' + task.id + ')" style="background-color: #dc3545;">Delete</button>' +
+              '</div>'
+              ;
+    
             tasksList.appendChild(taskEl);
           });
         }
