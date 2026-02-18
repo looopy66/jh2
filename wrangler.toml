@@ -1,0 +1,18 @@
+name = "multi-sync-planner"
+main = "src/index.ts"
+compatibility_date = "2023-12-01"
+
+[env.production]
+account_id = "your-account-id"
+workers_dev = true
+
+[vars]
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
+OPENAI_API_KEY = ""
+NOTIFY_WEBHOOK_URL = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "planner_db"
+database_id = "your-database-id"

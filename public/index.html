@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Sync Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login/Register Form -->
+    <div id="auth-section" class="section">
+      <h1>Multi-Sync Planner</h1>
+      <div class="form-container">
+        <div class="tabs">
+          <button id="login-tab" class="tab active">Login</button>
+          <button id="register-tab" class="tab">Register</button>
+        </div>
+        
+        <form id="login-form">
+          <input type="text" id="login-username" placeholder="Username" required>
+          <input type="password" id="login-password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        
+        <form id="register-form" style="display: none;">
+          <input type="text" id="register-username" placeholder="Username" required>
+          <input type="password" id="register-password" placeholder="Password" required>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Main App -->
+    <div id="main-app" class="section" style="display: none;">
+      <header>
+        <h1>Planner Dashboard</h1>
+        <div class="user-info">
+          <span id="current-user"></span>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </header>
+      
+      <div class="dashboard">
+        <aside class="sidebar">
+          <nav>
+            <button id="tasks-tab" class="nav-btn active">Tasks</button>
+            <button id="ai-tab" class="nav-btn">AI Assistant</button>
+            <button id="settings-tab" class="nav-btn">Settings</button>
+            <button id="admin-tab" class="nav-btn" style="display: none;">Admin Panel</button>
+          </nav>
+        </aside>
+        
+        <main class="main-content">
+          <!-- Tasks View -->
+          <div id="tasks-view" class="view active">
+            <div class="tasks-header">
+              <h2>Your Tasks</h2>
+              <button id="add-task-btn" class="btn-primary">Add Task</button>
+            </div>
+            
+            <div class="filters">
+              <select id="filter-status">
+                <option value="all">All Tasks</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+              </select>
+              <select id="filter-tags">
+                <option value="all">All Tags</option>
+              </select>
+            </div>
+            
+            <div id="tasks-list" class="tasks-list">
+              <!-- Tasks will be populated here -->
+            </div>
+          </div>
+          
+          <!-- AI Assistant View -->
+          <div id="ai-view" class="view" style="display: none;">
+            <h2>AI Assistant</h2>
+            <div class="ai-container">
+              <div id="ai-conversation" class="conversation">
+                <!-- Conversation history will appear here -->
+              </div>
+              <div class="ai-input-area">
+                <textarea id="ai-message" placeholder="Ask me anything about your tasks..."></textarea>
+                <button id="send-ai-message" class="btn-primary">Send</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Settings View -->
+          <div id="settings-view" class="view" style="display: none;">
+            <h2>Settings</h2>
+            <div class="settings-content">
+              <div class="setting-item">
+                <label for="reminder-time">Default Reminder Time:</label>
+                <input type="time" id="reminder-time">
+              </div>
+              
+              <div class="setting-item">
+                <label for="default-tags">Default Tags (comma separated):</label>
+                <input type="text" id="default-tags" placeholder="work, personal, urgent">
+              </div>
+              
+              <button id="save-settings" class="btn-primary">Save Settings</button>
+            </div>
+          </div>
+          
+          <!-- Admin Panel View -->
+          <div id="admin-view" class="view" style="display: none;">
+            <h2>Admin Panel</h2>
+            <div class="admin-controls">
+              <div class="admin-section">
+                <h3>User Management</h3>
+                <table id="users-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Username</th>
+                      <th>Role</th>
+                      <th>Expires At</th>
+                      <th>Max Tasks</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="users-tbody">
+                    <!-- Users will be populated here -->
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="admin-section">
+                <h3>Add New User</h3>
+                <form id="add-user-form">
+                  <input type="text" id="new-username" placeholder="Username" required>
+                  <input type="password" id="new-password" placeholder="Password" required>
+                  <select id="new-role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <input type="date" id="new-expires-at">
+                  <input type="number" id="new-max-tasks" value="100" min="1">
+                  <button type="submit" class="btn-primary">Add User</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="task-modal-title">Add Task</h2>
+        <form id="task-form">
+          <input type="hidden" id="task-id">
+          <div class="form-group">
+            <label for="task-title">Title *</label>
+            <input type="text" id="task-title" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-description">Description</label>
+            <textarea id="task-description"></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="task-due-date">Due Date</label>
+              <input type="datetime-local" id="task-due-date">
+            </div>
+            
+            <div class="form-group">
+              <label for="task-reminder">Reminder Time</label>
+              <input type="datetime-local" id="task-reminder">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-tags">Tags (comma separated)</label>
+            <input type="text" id="task-tags" placeholder="work, urgent, meeting">
+          </div>
+          
+          <div class="form-group">
+            <label for="task-repeat">Repeat Pattern</label>
+            <select id="task-repeat">
+              <option value="">No Repeat</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-share">Share with (comma separated usernames)</label>
+            <input type="text" id="task-share" placeholder="user1, user2">
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save Task</button>
+            <button type="button" id="delete-task-btn" class="btn-danger" style="display: none;">Delete Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
