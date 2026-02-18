@@ -18,8 +18,7 @@ A multi-platform synchronized planner built on Cloudflare Workers with advanced 
 
 ## Quick Deploy
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/deploy?accountId=your-account-id&zoneId=your-zone-id&template=https://github.com/your-username/multi-sync-planner)
-
+[[![Deploy to Cloudflare Workers][https://deploy.workers.cloudflare.com/deploy?spm=a2ty_o07.30620332.0.0.612b3da9xdKOom&accountId=your-account-id&zoneId=your-zone-id&template=https://github.com/your-username/multi-sync-planner]
 ## Manual Deployment
 
 1. Fork this repository
