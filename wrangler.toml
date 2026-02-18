@@ -14,9 +14,7 @@ database_id = ""
 binding = "TASKS_KV"
 id = ""
 
-[[r2_buckets]]
-binding = "ASSETS"
-bucket_name = "planner-assets"
+
 
 [vars]
 ADMIN_USERNAME = "admin"

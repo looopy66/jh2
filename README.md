@@ -71,8 +71,8 @@ This application uses Cloudflare D1 for database storage. During deployment:
 - Frontend: HTML/CSS/JavaScript served from Workers
 - Backend: Cloudflare Worker with Hono framework
 - Database: Cloudflare D1 (SQLite)
+- Key-Value Store: Cloudflare KV for caching and session storage
 - Authentication: JWT-based session management
-- File Storage: R2 for attachments (optional)
 
 ## Contributing
 
