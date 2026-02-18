@@ -1,0 +1,25 @@
+name = "multi-sync-planner"
+main = "src/index.ts"
+compatibility_date = "2023-12-01"
+
+[env.development]
+account_id = "your-account-id-here"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "multi-sync-planner-db"
+database_id = ""
+
+[[kv_namespaces]]
+binding = "TASKS_KV"
+id = ""
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "planner-assets"
+
+[vars]
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
+GOTIFY_URL = ""
+GOTIFY_TOKEN = ""

@@ -1,0 +1,29 @@
+{
+  "name": "multi-sync-planner",
+  "version": "1.0.0",
+  "description": "A multi-platform synchronized planner with task management, sharing, and notifications",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest"
+  },
+  "keywords": [
+    "planner",
+    "task-management",
+    "cloudflare-workers",
+    "synchronization",
+    "multi-platform"
+  ],
+  "author": "MultiSync Planner",
+  "license": "MIT",
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "itty-router": "^3.0.12",
+    "hono": "^4.0.5"
+  },
+  "devDependencies": {
+    "wrangler": "^3.22.1",
+    "vitest": "^1.2.0"
+  }
+}
